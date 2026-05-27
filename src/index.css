@@ -1,5 +1,4 @@
 /* CUSTOM FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap');
 
 * {
   margin: 0;
@@ -587,7 +586,7 @@ section {
 
 .section-desc {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.9);
   max-width: 600px;
   line-height: 1.8;
   margin-bottom: 2rem;
@@ -1009,7 +1008,7 @@ footer {
 .footer-sub {
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.85);
   letter-spacing: 2px;
 }
 

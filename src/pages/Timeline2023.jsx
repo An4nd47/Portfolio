@@ -164,6 +164,7 @@ export default function Timeline2023() {
                 <input
                   type="text"
                   className="terminal-input"
+                  aria-label="Terminal command input"
                   value={inputVal}
                   onChange={(e) => setInputVal(e.target.value)}
                   onKeyDown={handleCommand}

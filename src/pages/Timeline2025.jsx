@@ -226,6 +226,7 @@ export default function Timeline2025() {
               </div>
               <input
                 type="text"
+                aria-label="Sentence to tokenize"
                 value={nlpInput}
                 onChange={(e) => setNlpInput(e.target.value)}
                 placeholder="Type a sentence to tokenize..."
@@ -275,6 +276,7 @@ export default function Timeline2025() {
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 <input
                   type="text"
+                  aria-label="Search word in corpus"
                   value={concordInput}
                   onChange={(e) => setConcordInput(e.target.value)}
                   placeholder="search word..."

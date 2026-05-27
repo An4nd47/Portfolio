@@ -42,6 +42,7 @@ export default function Navbar({
           <label className="toggle-switch">
             <input
               type="checkbox"
+              aria-label="Toggle navigation mode"
               checked={navigationMode === 'scroll'}
               onChange={() => onToggleNavigationMode(navigationMode === 'scroll' ? 'warp' : 'scroll')}
             />

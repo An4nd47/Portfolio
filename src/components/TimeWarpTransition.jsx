@@ -432,7 +432,7 @@ export default function TimeWarpTransition({ isActive, departure, destination, o
 
   const TIMELINE_ORDER = ['hero', 'y2023', 'y2024', 'y2025', 'y2026', 'future'];
   const isBackwards = TIMELINE_ORDER.indexOf(destination) < TIMELINE_ORDER.indexOf(departure);
-  const videoSrc = isBackwards ? "/backwardLoading.mp4" : "/delorian animation.mp4";
+  const videoSrc = "/delorianVideo.webm";
 
   const isEndingRef = useRef(false);
 
@@ -548,7 +548,7 @@ export default function TimeWarpTransition({ isActive, departure, destination, o
           src={videoSrc}
           muted
           playsInline
-          preload="auto"
+          aria-hidden="true"
           onEnded={handleVideoEnded}
           onTimeUpdate={handleTimeUpdate}
           style={{

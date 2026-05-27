@@ -79,10 +79,13 @@ export default function Hero({ onInitiate, navigationMode }) {
             />
           </div>
           <img
-            src="../../public/delorian.png"
+            src="/delorian.webp"
             alt="DeLorean Time Machine"
+            width="600"
+            height="300"
+            fetchPriority="high"
             className="delorean-img"
-            style={{ width: '100%', position: 'relative', zIndex: isInitiating ? 51 : 1, transform: 'scale(1.2) translateY(-20px)', filter: isInitiating ? 'drop-shadow(0 0 20px rgba(0, 212, 255, 0.8))' : 'none', transition: 'filter 1.5s ease-in-out' }}
+            style={{ width: '100%', height: 'auto', position: 'relative', zIndex: isInitiating ? 51 : 1, transform: 'scale(1.2) translateY(-20px)', filter: isInitiating ? 'drop-shadow(0 0 20px rgba(0, 212, 255, 0.8))' : 'none', transition: 'filter 1.5s ease-in-out' }}
           />
           <div className="delorean-glow" style={{ opacity: isInitiating ? 0 : 1, transition: 'opacity 1.5s ease-in-out' }} />
         </div>

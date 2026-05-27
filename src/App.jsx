@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import CustomCursor from './components/CustomCursor';
 import Starfield from './components/Starfield';
 import Navbar from './components/Navbar';
@@ -7,13 +7,13 @@ import Modal from './components/Modal';
 import TimeWarpTransition from './components/TimeWarpTransition';
 import Footer from './components/Footer';
 
-// Pages
-import Hero from './pages/Hero';
-import Timeline2023 from './pages/Timeline2023';
-import Timeline2024 from './pages/Timeline2024';
-import Timeline2025 from './pages/Timeline2025';
-import Timeline2026 from './pages/Timeline2026';
-import TimelineFuture from './pages/TimelineFuture';
+// Pages (Lazy Loaded)
+const Hero = React.lazy(() => import('./pages/Hero'));
+const Timeline2023 = React.lazy(() => import('./pages/Timeline2023'));
+const Timeline2024 = React.lazy(() => import('./pages/Timeline2024'));
+const Timeline2025 = React.lazy(() => import('./pages/Timeline2025'));
+const Timeline2026 = React.lazy(() => import('./pages/Timeline2026'));
+const TimelineFuture = React.lazy(() => import('./pages/TimelineFuture'));
 
 export default function App() {
   // Navigation Mode: 'scroll' (continuous smooth scroll) or 'warp' (discrete tab-pages with warp transition)
@@ -156,27 +156,31 @@ export default function App() {
       />
 
       {/* Main Content Layout */}
-      {navigationMode === 'scroll' ? (
-        <div className="continuous-timeline-wrapper">
-          <Hero onInitiate={handleSelectTimeline} navigationMode={navigationMode} />
-          <Timeline2023 />
-          <Timeline2024 onOpenModal={handleOpenModal} />
-          <Timeline2025 />
-          <Timeline2026 />
-          <TimelineFuture />
-          <Footer />
-        </div>
-      ) : (
-        <div className="discrete-warp-wrapper">
-          {activeTimeline === 'hero' && <Hero onInitiate={handleSelectTimeline} navigationMode={navigationMode} />}
-          {activeTimeline === 'y2023' && <Timeline2023 />}
-          {activeTimeline === 'y2024' && <Timeline2024 onOpenModal={handleOpenModal} />}
-          {activeTimeline === 'y2025' && <Timeline2025 />}
-          {activeTimeline === 'y2026' && <Timeline2026 />}
-          {activeTimeline === 'future' && <TimelineFuture />}
-          <Footer />
-        </div>
-      )}
+      <main>
+        <Suspense fallback={<div style={{height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#020510', color: '#00d4ff', fontFamily: 'monospace'}}>INITIALIZING SYSTEM...</div>}>
+          {navigationMode === 'scroll' ? (
+            <div className="continuous-timeline-wrapper">
+              <Hero onInitiate={handleSelectTimeline} navigationMode={navigationMode} />
+              <Timeline2023 />
+              <Timeline2024 onOpenModal={handleOpenModal} />
+              <Timeline2025 />
+              <Timeline2026 />
+              <TimelineFuture />
+              <Footer />
+            </div>
+          ) : (
+            <div className="discrete-warp-wrapper">
+              {activeTimeline === 'hero' && <Hero onInitiate={handleSelectTimeline} navigationMode={navigationMode} />}
+              {activeTimeline === 'y2023' && <Timeline2023 />}
+              {activeTimeline === 'y2024' && <Timeline2024 onOpenModal={handleOpenModal} />}
+              {activeTimeline === 'y2025' && <Timeline2025 />}
+              {activeTimeline === 'y2026' && <Timeline2026 />}
+              {activeTimeline === 'future' && <TimelineFuture />}
+              <Footer />
+            </div>
+          )}
+        </Suspense>
+      </main>
 
       {/* Floating Logs Modal */}
       <Modal
