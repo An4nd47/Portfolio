@@ -41,7 +41,6 @@ export default function Hero({ onInitiate, navigationMode }) {
         <div style={{ opacity: isInitiating ? 0 : 1, transition: 'opacity 1.5s ease-in-out' }}>
           <div className="hero-eyebrow">⬡ TEMPORAL JOURNEY INITIALIZED ⬡</div>
           <h1 className="hero-title">
-            Travelling Through the<br />
             <span>Evolution of A Software Developer</span>
           </h1>
           <p className="hero-sub">
@@ -78,15 +77,30 @@ export default function Hero({ onInitiate, navigationMode }) {
               }}
             />
           </div>
-          <img
-            src="/delorian.webp"
-            alt="DeLorean Time Machine"
-            width="600"
-            height="300"
-            fetchPriority="high"
-            className="delorean-img"
-            style={{ width: '100%', height: 'auto', position: 'relative', zIndex: isInitiating ? 51 : 1, transform: 'scale(1.2) translateY(-20px)', filter: isInitiating ? 'drop-shadow(0 0 20px rgba(0, 212, 255, 0.8))' : 'none', transition: 'filter 1.5s ease-in-out' }}
-          />
+          {/* Wrapper handles the visual scale so the <img> reported CSS size stays accurate */}
+          <div style={{
+            transform: 'scale(1.2) translateY(-20px)',
+            position: 'relative',
+            zIndex: isInitiating ? 51 : 1,
+            transformOrigin: 'center center',
+          }}>
+            <img
+              src="/delorian.webp"
+              alt="DeLorean Time Machine"
+              width="600"
+              height="300"
+              fetchPriority="high"
+              loading="eager"
+              decoding="async"
+              className="delorean-img"
+              style={{
+                width: '100%',
+                height: 'auto',
+                filter: isInitiating ? 'drop-shadow(0 0 20px rgba(0, 212, 255, 0.8))' : 'none',
+                transition: 'filter 1.5s ease-in-out',
+              }}
+            />
+          </div>
           <div className="delorean-glow" style={{ opacity: isInitiating ? 0 : 1, transition: 'opacity 1.5s ease-in-out' }} />
         </div>
 

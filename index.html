@@ -2,8 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏱️</text></svg>" />
+    <!-- Proper SVG favicon — replaces emoji data: URI that fails Best Practices audit -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Theme colour used by browsers / PWA chrome -->
+    <meta name="theme-color" content="#020510" />
     <title>DEV.TIMELINE // DeLorean Time Travel Portfolio</title>
     <meta name="description" content="Embark on a temporal journey tracking the milestones, full-stack projects, NLP algorithms, and machine learning architectures of an AI developer." />
     <!-- SEO and Social Meta Tags -->
@@ -12,10 +15,8 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://portfolio.dev.timeline/" />
-    <!-- Google Fonts link for faster pre-connect rendering -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Fonts are self-hosted via @fontsource (imported in main.jsx).
+         Google Fonts CDN links removed — eliminates render-blocking external network call. -->
   </head>
   <body>
     <div id="root"></div>

@@ -1,0 +1,48 @@
+/*
+  Static site security headers for Netlify / Vercel / Cloudflare Pages.
+  For other hosts (nginx, etc.) translate these into server config equivalents.
+*/
+
+/*
+  Apply to all routes
+*/
+/*
+  Prevent clickjacking — page cannot be framed by external sites
+*/
+/*
+  Block MIME-type sniffing attacks
+*/
+/*
+  Strict referrer in cross-origin requests
+*/
+/*
+  Block camera / mic / geolocation access unless explicitly granted
+*/
+/*
+  Prevent cross-origin window.opener attacks
+*/
+
+/*
+  ── Netlify _headers syntax ──────────────────────────────────────────────────
+*/
+/*
+  All pages
+*/
+/
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Cross-Origin-Opener-Policy: same-origin
+
+/*
+  Hashed static assets — cache for 1 year (immutable = browser never revalidates)
+*/
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*
+  Fonts — long-term cache
+*/
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

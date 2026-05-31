@@ -4,8 +4,11 @@ import Starfield from './components/Starfield';
 import Navbar from './components/Navbar';
 import TimelineNav from './components/TimelineNav';
 import Modal from './components/Modal';
-import TimeWarpTransition from './components/TimeWarpTransition';
 import Footer from './components/Footer';
+
+// TimeWarpTransition: lazy-loaded — only needed when user triggers warp navigation.
+// Removes its 23KB canvas-heavy chunk from the initial bundle entirely.
+const TimeWarpTransition = React.lazy(() => import('./components/TimeWarpTransition'));
 
 // Pages (Lazy Loaded)
 const Hero = React.lazy(() => import('./pages/Hero'));
@@ -143,17 +146,20 @@ export default function App() {
         navigationMode={navigationMode}
       />
 
-      {/* Dynamic Time Warp screen */}
-      <TimeWarpTransition
-        isActive={isWarping}
-        departure={warpDeparture}
-        destination={warpDestination}
-        onMidpoint={(id) => {
-          setActiveTimeline(id);
-          window.scrollTo(0, 0);
-        }}
-        onEnd={() => setIsWarping(false)}
-      />
+      {/* Dynamic Time Warp screen — Suspense fallback=null is correct:
+           the overlay fades in; a brief null while the chunk loads is imperceptible */}
+      <Suspense fallback={null}>
+        <TimeWarpTransition
+          isActive={isWarping}
+          departure={warpDeparture}
+          destination={warpDestination}
+          onMidpoint={(id) => {
+            setActiveTimeline(id);
+            window.scrollTo(0, 0);
+          }}
+          onEnd={() => setIsWarping(false)}
+        />
+      </Suspense>
 
       {/* Main Content Layout */}
       <main>

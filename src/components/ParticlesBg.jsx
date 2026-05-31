@@ -2,9 +2,12 @@ import React, { useMemo } from 'react';
 
 export default function ParticlesBg() {
   const particles = useMemo(() => {
+    // Reduce particle DOM nodes for users preferring reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const count = prefersReducedMotion ? 5 : 20; // Was 30 — saves 10+ DOM nodes on hero
     const colors = ['var(--neon-blue)', 'var(--neon-green)', 'var(--neon-orange)', '#fff'];
     const list = [];
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < count; i++) {
       const size = Math.random() * 3 + 1;
       list.push({
         id: i,

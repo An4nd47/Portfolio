@@ -23,12 +23,12 @@ export default function Navbar({
   }, []);
 
   const links = [
-    { id: 'hero', label: 'INIT' },
+    { id: 'hero', label: 'ABOUT' },
     { id: 'y2023', label: '2023' },
     { id: 'y2024', label: '2024' },
     { id: 'y2025', label: '2025' },
     { id: 'y2026', label: '2026' },
-    { id: 'future', label: '∞' },
+    { id: 'future', label: 'FUTURE' },
   ];
 
   return (

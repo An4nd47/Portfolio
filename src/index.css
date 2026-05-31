@@ -1,4 +1,5 @@
-/* CUSTOM FONTS */
+/* Fonts are self-hosted via @fontsource — imported in main.jsx */
+
 
 * {
   margin: 0;
@@ -110,7 +111,7 @@ body {
 .nav-link {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.75); /* Raised from 0.6 — passes WCAG AA 4.5:1 on #020510 */
   text-decoration: none;
   letter-spacing: 2px;
   transition: color 0.3s, text-shadow 0.3s;
@@ -286,7 +287,7 @@ section {
 
 .hero-sub {
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.75); /* Raised from 0.6 — passes WCAG AA */
   max-width: 500px;
   margin: 0 auto 2rem;
   line-height: 1.7;
@@ -430,7 +431,7 @@ section {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 3px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.70); /* Raised from 0.4 — passes WCAG AA */
 }
 
 .scroll-arrow {
@@ -488,7 +489,7 @@ section {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.70); /* Raised from 0.3 — passes WCAG AA */
   transition: all 0.3s;
   opacity: 0;
   transform: translateX(10px);
@@ -668,7 +669,7 @@ section {
 }
 
 .terminal-line.dim {
-  color: rgba(0, 255, 136, 0.5);
+  color: rgba(0, 255, 136, 0.65); /* Raised from 0.5 — passes WCAG AA on #000 terminal bg */
 }
 
 .terminal-input-row {
@@ -707,7 +708,7 @@ section {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.82); /* Raised from 0.7 — passes WCAG AA */
   transition: all 0.3s;
   cursor: default;
   position: relative;
@@ -795,7 +796,7 @@ section {
 
 .proj-desc {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.75); /* Raised from 0.5 — passes WCAG AA */
   line-height: 1.6;
 }
 
@@ -1434,3 +1435,16 @@ footer {
   100% { opacity: 0; }
 }
 
+/* ─── Accessibility: Reduced Motion ─────────────────────────────────────────
+   Zero-out all animation/transition durations for users who opt-out of motion.
+   Preserves layout and visual design — just removes time-based movement. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
